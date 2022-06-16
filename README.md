@@ -103,6 +103,4 @@ ______________________________________________________________
 
 #### resposta2.txt 
 #### Linguagens 
-#### C, C++, Java, Python, Ruby, etc. 
-#### Entrega 
-#### O código fonte pode ser desenvolvido em grupos de até 3 pessoas, e deve ser entregue no e-mail esgjunior@uesc.br ou via classroom até a data 20/06/2022 às 23:59.
+#### C, C++, Java, Python, Ruby, etc.
