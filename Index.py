@@ -1,13 +1,13 @@
 
 
-def getReferencies(consulta, arquivo):
+from itertools import count
+
+
+def PrimeiroCaso(consulta, arquivo):
     aparicoes = 0
     result = {}
     pla = False
     string = ''
-    strings = ''
-    inserida = ''
-
 
     for palavra in consulta:
         for element in arquivo:
@@ -27,31 +27,42 @@ def getReferencies(consulta, arquivo):
 
         string = ''
 
+    return result
 
-    # for element in arquivo:
-    #     for palavra in element:
-    #         for essa in consulta:
+def SegundoCaso(consulta, arquivo, nomeArquivo):
+    aparicoes = 0
+    result = []
+    pla = False
+    contu = 0
+    aux = ''
 
-    #             if(palavra == essa and type(essa) == str):
-
-    #                 aparicoes = aparicoes + 1                    
-    #                 pla = True
+    for palavra in consulta:
+        for element in arquivo:
             
-    #         if(pla):
-    #             num = len(element)             
-    #             string = string + ' ' + str(aparicoes) + ',' + str(element[num - 1])
-    #             #string = result[palavra] + string
-    #             result[palavra] = string
+            for palavraElemento in element:
+                
+                if(palavra == palavraElemento and type(palavraElemento) == str):
+                    aparicoes = aparicoes + 1
+                    pla = True
+            
+            if(pla):
+                num = len(element)
+                elem = element[num - 1]
+                aux = aux + ' ' + nomeArquivo[elem]
+                contu = aparicoes + contu
 
-    #     aparicoes = 0
-    #     string = ""
-    #     resultado = ""
-    #     pla = False
+            aparicoes = 0
+            pla = False
+            
+        result = str(contu) + aux
+        #aux = ''
+            
+           
+            
 
     return result
 
-
-def main(conjunto:str, desconsideradas:str, consulta:str):
+def main(conjunto:str, desconsideradas:str, consulta:str, tipoConsulta:str):
 
     with open(conjunto,"r") as arquivo:
         base = arquivo.readlines()
@@ -60,10 +71,12 @@ def main(conjunto:str, desconsideradas:str, consulta:str):
     count = 0
     arq = []
     result = []
+    nomeArquivo = []
     
 
     for x in base:
         links.append(x)
+        nomeArquivo.append(x[len(x) - 6:len(x) - 1])
         
     def chr_remove(old, to_remove):
         new_string = old
@@ -80,7 +93,6 @@ def main(conjunto:str, desconsideradas:str, consulta:str):
                     count = count + x
                 arq.append(count)
                 count = ''
-                #print(arq)
         return arq
             
     arq = add(links)
@@ -101,10 +113,21 @@ def main(conjunto:str, desconsideradas:str, consulta:str):
                 if(s != essa and type(s) == str):
                     palavras[s] = ''
 
-    arq = getReferencies(palavras, result)
-    print(arq)
-    
-consulta = ['casa', 'engracada']
+    if(tipoConsulta == ','):
+        if(consulta):
+            arq = PrimeiroCaso(consulta, result)
+            print(arq)
+        else:
+            arq = PrimeiroCaso(palavras, result)
+            print(arq)
+    else:
+        arq = SegundoCaso(consulta, result, nomeArquivo)
+        print(arq)
+
+consulta = ['casa', "engracada"] #Caso vazio, todas a palavras do arquivo exeto as desconsideradas serao retornadas
+
 desconsideradas = ['o','a','e','de','da','das','do','na','nas','no','em','nao','um','uns','uma','umas']
 
-main("base.txt", desconsideradas, consulta)
+#main("base.txt", desconsideradas, consulta, ',')
+
+main("base.txt", desconsideradas, consulta, ';')
