@@ -1,8 +1,4 @@
 
-
-from itertools import count
-
-
 def PrimeiroCaso(consulta, arquivo):
     aparicoes = 0
     result = {}
@@ -48,7 +44,8 @@ def SegundoCaso(consulta, arquivo, nomeArquivo):
             if(pla):
                 num = len(element)
                 elem = element[num - 1]
-                aux = aux + ' ' + nomeArquivo[elem]
+                if nomeArquivo[elem] not in aux:
+                    aux = aux + ' ' + nomeArquivo[elem]
                 contu = aparicoes + contu
 
             aparicoes = 0
@@ -128,6 +125,6 @@ consulta = ['casa', "engracada"] #Caso vazio, todas a palavras do arquivo exeto 
 
 desconsideradas = ['o','a','e','de','da','das','do','na','nas','no','em','nao','um','uns','uma','umas']
 
-#main("base.txt", desconsideradas, consulta, ',')
+main("base.txt", desconsideradas, consulta, ',')
 
 main("base.txt", desconsideradas, consulta, ';')
