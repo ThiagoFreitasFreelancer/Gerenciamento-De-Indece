@@ -1,3 +1,3 @@
-C:\Users\Thiago Freitas\Documents\Uesc\ORI\Programas\GERENCIAMENTODEINDICES\a.txt
-C:\Users\Thiago Freitas\Documents\Uesc\ORI\Programas\GERENCIAMENTODEINDICES\b.txt
-C:\Users\Thiago Freitas\Documents\Uesc\ORI\Programas\GERENCIAMENTODEINDICES\c.txt
+a.txt
+b.txt
+c.txt
